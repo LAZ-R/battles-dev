@@ -15,6 +15,10 @@ const generateRandomAlphaNumericString = (length) => {
    return result;
 }
 
+const getFormattedNumber = (number) => {
+    return number.toLocaleString('fr-FR');
+}
+
 // CONSTANTES -----------------------------------------------------------------
 
 const types = [
@@ -375,11 +379,11 @@ const getFactionButtonHtml = (faction) => {
     return `
         <button class="faction-button" style="background-image: url('./medias/images/types-images/${getTypeImageFile(faction.type)}.jpg');">
             <div class="faction-button-backdrop">
-                <span>Unités : <b>${faction.units}</b></span>
+                <span>Unités : <b>${getFormattedNumber(faction.units)}</b></span>
                 <span class="faction-button-name">${faction.type}</span>
                 <div class="faction-button-atk-def-container">
-                    <span>ATK<br><b>${faction.base_atk * faction.units}</b></span>
-                    <span>DEF<br><b>${faction.base_def * faction.units}</b></span>
+                    <span>ATK<br><b>${getFormattedNumber(faction.base_atk * faction.units)}</b></span>
+                    <span>DEF<br><b>${getFormattedNumber(faction.base_def * faction.units)}</b></span>
                 </div>
             </div>
         </button>
@@ -404,9 +408,9 @@ const setArmyInterface = (user) => {
     armyContainer.setAttribute('class', isUserPlayer ? 'army-container player-army-container' : 'army-container ai-army-container');
     armyContainer.innerHTML = `
         <div class="army-info-container">
-            <span>ATK<br><b>${armyTotalAtk}</b></span>
-            <span><b>${army.name}</b><br>unités : <b>${armyTotalUnits}</b></span>
-            <span>DEF<br><b>${armyTotalDef}</b></span>
+            <span>ATK<br><b>${getFormattedNumber(armyTotalAtk)}</b></span>
+            <span><b>${army.name}</b><br>unités : <b>${getFormattedNumber(armyTotalUnits)}</b></span>
+            <span>DEF<br><b>${getFormattedNumber(armyTotalDef)}</b></span>
         </div>
         <div class="army-factions-container">
             <div class="factions-container-row">
